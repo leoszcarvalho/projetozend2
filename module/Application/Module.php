@@ -11,6 +11,9 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Db\ResultSet\ResultSet;
+use Application\Model\Album;
+use Application\Model\AlbumTable;
 
 class Module
 {
@@ -36,4 +39,24 @@ class Module
             ),
         );
     }
+    
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' =>array(
+                'Entity' => function($service)
+                            {
+                               $dbAdapter = $service->get('Zend\Db\Adapter\Adapter');
+                               $resultSet = new ResultSet();
+                               $mapping = new Album();
+                               
+                               $albumTable = new AlbumTable($dbAdapter, $resultSet, $mapping);
+                               
+                               return $albumTable;
+                               
+                            }
+            )
+        );
+    }
+    
 }

@@ -8,4 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Zend\\' => array($vendorDir . '/zendframework/zendframework/library'),
     'ZendXml' => array($vendorDir . '/zendframework/zendxml/library'),
+    'ZendDiagnostics\\' => array($vendorDir . '/zendframework/zenddiagnostics/src'),
+    'ZendDiagnosticsTest\\' => array($vendorDir . '/zendframework/zenddiagnostics/tests'),
+    'ZFTool\\' => array($vendorDir . '/zendframework/zftool/src'),
 );

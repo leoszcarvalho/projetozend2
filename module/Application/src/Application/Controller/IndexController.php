@@ -14,8 +14,35 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+    
+    protected $entity;
+
+
     public function indexAction()
     {
+        $data = $this->getEntity()->fetchAll();
+        
+        foreach($data as $values)
+        {
+            var_dump($values);
+        }
+        
+        
+        
         return new ViewModel();
     }
+    
+    public function getEntity()
+    {
+        
+        if(!$this->entity)
+        {
+            $this->entity = $this->getServiceLocator()->get('Entity');
+        
+            return $this->entity;
+            
+        }
+        
+    }
+    
 }
